@@ -33,4 +33,9 @@ jobs:
         run: pnpm build
 
       - name: Publish
-        run: pnpm publish --no-git-checks --provenance
+        run: |
+          if [[ "$GITHUB_REF_NAME" == *-* ]]; then
+            pnpm publish --no-git-checks --provenance --tag next
+          else
+            pnpm publish --no-git-checks --provenance
+          fi
