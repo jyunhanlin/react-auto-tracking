@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { createTracker } from './tracker'
-import { resetFiberKeyCache } from '../fiber/resolver'
+import { resetFiberKeyCache } from '../extract/fiber'
 
 describe('createTracker', () => {
   beforeEach(() => {

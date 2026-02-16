@@ -1,5 +1,5 @@
 import { getEventCategory, getHandlersForEvent, EventCategory } from './event-categories'
-import { resolveFiber } from '../fiber/resolver'
+import { resolveFiber } from '../extract/fiber'
 
 const INTERACTIVE_TAGS = new Set([
   'BUTTON', 'A', 'INPUT', 'SELECT', 'TEXTAREA',

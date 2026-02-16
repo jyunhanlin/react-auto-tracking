@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { createPipeline } from './pipeline'
-import { resetFiberKeyCache } from '../fiber/resolver'
+import { resetFiberKeyCache } from '../extract/fiber'
 import type { ResolvedConfig } from '../types'
 
 function makeConfig(overrides: Partial<ResolvedConfig> = {}): ResolvedConfig {

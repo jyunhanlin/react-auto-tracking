@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { extractElementInfo } from './element-extractor'
+import { extractElementInfo } from './element'
 
 describe('extractElementInfo', () => {
   it('extracts basic element info', () => {

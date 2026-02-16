@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest'
 import { getTrackableElement, isIgnored, isDisabled } from './filter-engine'
-import { resetFiberKeyCache } from '../fiber/resolver'
+import { resetFiberKeyCache } from '../extract/fiber'
 
 describe('isIgnored', () => {
   it('returns true when element matches ignoreSelector', () => {

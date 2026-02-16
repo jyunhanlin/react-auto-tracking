@@ -1,7 +1,6 @@
 import type { ResolvedConfig, TrackEvent } from '../types'
-import { extractElementInfo } from '../extract/element-extractor'
-import { resolveFiber } from '../fiber/resolver'
-import { extractFiberInfo } from '../fiber/extractor'
+import { extractElementInfo } from '../extract/element'
+import { resolveFiber, extractFiberInfo } from '../extract/fiber'
 import { getTrackableElement } from '../filter/filter-engine'
 import { createRegistry, type Registry } from './registry'
 
