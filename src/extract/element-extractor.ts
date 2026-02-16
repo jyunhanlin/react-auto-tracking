@@ -13,8 +13,19 @@ export function extractElementInfo(element: Element): ElementInfo {
     href: isAnchorElement(element) ? element.href : null,
     role: element.getAttribute('role'),
     type: isInputElement(element) ? element.type : null,
-    dataset: { ...(element as HTMLElement).dataset },
+    dataset: extractDataset((element as HTMLElement).dataset),
   }
+}
+
+function extractDataset(dataset: DOMStringMap): Record<string, string> {
+  const result: Record<string, string> = {}
+  for (const key of Object.keys(dataset)) {
+    const value = dataset[key]
+    if (value !== undefined) {
+      result[key] = value
+    }
+  }
+  return result
 }
 
 function isAnchorElement(el: Element): el is HTMLAnchorElement {
