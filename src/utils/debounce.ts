@@ -5,10 +5,7 @@ interface DebouncedFn<T extends (...args: any[]) => void> {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function debounce<T extends (...args: any[]) => void>(
-  fn: T,
-  ms: number,
-): DebouncedFn<T> {
+export function debounce<T extends (...args: any[]) => void>(fn: T, ms: number): DebouncedFn<T> {
   let timeoutId: ReturnType<typeof setTimeout> | null = null
 
   const debounced = (...args: Parameters<T>): void => {

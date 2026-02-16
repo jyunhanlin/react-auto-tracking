@@ -7,8 +7,14 @@ function fakeEvent(type: string = 'click'): TrackEvent {
     type,
     timestamp: Date.now(),
     element: {
-      tagName: 'BUTTON', id: '', className: '', text: '',
-      href: null, role: null, type: null, dataset: {},
+      tagName: 'BUTTON',
+      id: '',
+      className: '',
+      text: '',
+      href: null,
+      role: null,
+      type: null,
+      dataset: {},
     },
     fiber: null,
     raw: new Event(type),
@@ -17,8 +23,12 @@ function fakeEvent(type: string = 'click'): TrackEvent {
 }
 
 describe('createRegistry', () => {
-  beforeEach(() => { vi.useFakeTimers() })
-  afterEach(() => { vi.useRealTimers() })
+  beforeEach(() => {
+    vi.useFakeTimers()
+  })
+  afterEach(() => {
+    vi.useRealTimers()
+  })
 
   it('registers and invokes callback for matching event type', () => {
     const registry = createRegistry()

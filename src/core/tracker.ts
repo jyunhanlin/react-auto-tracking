@@ -1,4 +1,10 @@
-import type { Tracker, TrackerConfig, TrackCallback, ListenerOptions, ResolvedConfig } from '../types'
+import type {
+  Tracker,
+  TrackerConfig,
+  TrackCallback,
+  ListenerOptions,
+  ResolvedConfig,
+} from '../types'
 import { createPipeline } from './pipeline'
 
 export function createTracker(config?: TrackerConfig): Tracker {

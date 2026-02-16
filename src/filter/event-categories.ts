@@ -8,23 +8,23 @@ export type EventCategory = (typeof EventCategory)[keyof typeof EventCategory]
 
 const EVENT_HANDLER_MAP: Readonly<Record<string, readonly string[]>> = {
   // Pointer
-  click:      ['onClick', 'onMouseDown', 'onMouseUp', 'onPointerDown', 'onPointerUp'],
+  click: ['onClick', 'onMouseDown', 'onMouseUp', 'onPointerDown', 'onPointerUp'],
   touchstart: ['onTouchStart'],
-  touchend:   ['onTouchEnd'],
+  touchend: ['onTouchEnd'],
 
   // Form
-  input:      ['onChange', 'onInput'],
-  change:     ['onChange'],
-  focus:      ['onFocus'],
-  blur:       ['onBlur'],
-  submit:     ['onSubmit'],
+  input: ['onChange', 'onInput'],
+  change: ['onChange'],
+  focus: ['onFocus'],
+  blur: ['onBlur'],
+  submit: ['onSubmit'],
 
   // Ambient
-  scroll:     ['onScroll'],
-  keydown:    ['onKeyDown'],
-  keyup:      ['onKeyUp'],
-  copy:       ['onCopy'],
-  paste:      ['onPaste'],
+  scroll: ['onScroll'],
+  keydown: ['onKeyDown'],
+  keyup: ['onKeyUp'],
+  copy: ['onCopy'],
+  paste: ['onPaste'],
 }
 
 const CATEGORY_MAP: Readonly<Record<string, EventCategory>> = {

@@ -132,6 +132,8 @@ pnpm test            # run tests
 pnpm test:watch      # watch mode
 pnpm test:coverage   # coverage report (80% threshold)
 pnpm lint            # oxlint
+pnpm format          # oxfmt (write)
+pnpm format:check    # oxfmt (check only)
 pnpm typecheck       # tsc --noEmit
 pnpm build           # ESM + CJS + .d.ts via tsdown
 ```

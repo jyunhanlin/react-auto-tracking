@@ -2,18 +2,37 @@ import { getEventCategory, getHandlersForEvent, EventCategory } from './event-ca
 import { resolveFiber } from '../extract/fiber'
 
 const INTERACTIVE_TAGS = new Set([
-  'BUTTON', 'A', 'INPUT', 'SELECT', 'TEXTAREA',
-  'SUMMARY', 'DETAILS',
+  'BUTTON',
+  'A',
+  'INPUT',
+  'SELECT',
+  'TEXTAREA',
+  'SUMMARY',
+  'DETAILS',
 ])
 
 const INTERACTIVE_ROLES = new Set([
   // Original widget roles
-  'button', 'link', 'menuitem', 'tab', 'checkbox', 'radio',
-  'combobox', 'listbox', 'option', 'switch', 'slider', 'spinbutton',
+  'button',
+  'link',
+  'menuitem',
+  'tab',
+  'checkbox',
+  'radio',
+  'combobox',
+  'listbox',
+  'option',
+  'switch',
+  'slider',
+  'spinbutton',
   // Composite widget variants
-  'menuitemcheckbox', 'menuitemradio', 'treeitem', 'gridcell',
+  'menuitemcheckbox',
+  'menuitemradio',
+  'treeitem',
+  'gridcell',
   // Input widget roles
-  'textbox', 'searchbox',
+  'textbox',
+  'searchbox',
 ])
 
 const MAX_ANCESTOR_DEPTH = 10

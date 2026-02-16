@@ -14,7 +14,9 @@ function makeConfig(overrides: Partial<ResolvedConfig> = {}): ResolvedConfig {
 }
 
 describe('createPipeline', () => {
-  beforeEach(() => { resetFiberKeyCache() })
+  beforeEach(() => {
+    resetFiberKeyCache()
+  })
 
   it('processes a click on interactive element with fiber', () => {
     const config = makeConfig()

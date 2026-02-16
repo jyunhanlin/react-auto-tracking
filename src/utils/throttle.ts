@@ -5,10 +5,7 @@ interface ThrottledFn<T extends (...args: any[]) => void> {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function throttle<T extends (...args: any[]) => void>(
-  fn: T,
-  ms: number,
-): ThrottledFn<T> {
+export function throttle<T extends (...args: any[]) => void>(fn: T, ms: number): ThrottledFn<T> {
   let lastCallTime = 0
   let timeoutId: ReturnType<typeof setTimeout> | null = null
   let lastArgs: Parameters<T> | null = null

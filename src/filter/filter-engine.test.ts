@@ -41,7 +41,9 @@ describe('isDisabled', () => {
 })
 
 describe('getTrackableElement', () => {
-  beforeEach(() => { resetFiberKeyCache() })
+  beforeEach(() => {
+    resetFiberKeyCache()
+  })
 
   describe('Pointer events', () => {
     it('returns interactive element (button)', () => {
@@ -81,17 +83,18 @@ describe('getTrackableElement', () => {
       el.remove()
     })
 
-    it.each([
-      'menuitemcheckbox', 'menuitemradio', 'treeitem', 'gridcell', 'textbox', 'searchbox',
-    ])('returns element with ARIA role "%s" as interactive', (role) => {
-      const el = document.createElement('div')
-      el.setAttribute('role', role)
-      document.body.appendChild(el)
+    it.each(['menuitemcheckbox', 'menuitemradio', 'treeitem', 'gridcell', 'textbox', 'searchbox'])(
+      'returns element with ARIA role "%s" as interactive',
+      (role) => {
+        const el = document.createElement('div')
+        el.setAttribute('role', role)
+        document.body.appendChild(el)
 
-      const result = getTrackableElement({ target: el, ignoreSelectors: [], eventType: 'click' })
-      expect(result).toBe(el)
-      el.remove()
-    })
+        const result = getTrackableElement({ target: el, ignoreSelectors: [], eventType: 'click' })
+        expect(result).toBe(el)
+        el.remove()
+      },
+    )
 
     it('returns element with React handler via fiber', () => {
       const el = document.createElement('div')
@@ -132,7 +135,11 @@ describe('getTrackableElement', () => {
       el.className = 'no-track'
       document.body.appendChild(el)
 
-      const result = getTrackableElement({ target: el, ignoreSelectors: ['.no-track'], eventType: 'click' })
+      const result = getTrackableElement({
+        target: el,
+        ignoreSelectors: ['.no-track'],
+        eventType: 'click',
+      })
       expect(result).toBeNull()
       el.remove()
     })
@@ -157,7 +164,11 @@ describe('getTrackableElement', () => {
       }
       document.body.appendChild(root)
 
-      const result = getTrackableElement({ target: current, ignoreSelectors: [], eventType: 'click' })
+      const result = getTrackableElement({
+        target: current,
+        ignoreSelectors: [],
+        eventType: 'click',
+      })
       expect(result).toBeNull()
       root.remove()
     })
@@ -178,7 +189,11 @@ describe('getTrackableElement', () => {
       el.className = 'no-track'
       document.body.appendChild(el)
 
-      const result = getTrackableElement({ target: el, ignoreSelectors: ['.no-track'], eventType: 'change' })
+      const result = getTrackableElement({
+        target: el,
+        ignoreSelectors: ['.no-track'],
+        eventType: 'change',
+      })
       expect(result).toBeNull()
       el.remove()
     })
@@ -209,7 +224,11 @@ describe('getTrackableElement', () => {
       el.className = 'no-track'
       document.body.appendChild(el)
 
-      const result = getTrackableElement({ target: el, ignoreSelectors: ['.no-track'], eventType: 'keydown' })
+      const result = getTrackableElement({
+        target: el,
+        ignoreSelectors: ['.no-track'],
+        eventType: 'keydown',
+      })
       expect(result).toBeNull()
       el.remove()
     })
