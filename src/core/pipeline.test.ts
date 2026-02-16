@@ -46,7 +46,7 @@ describe('createPipeline', () => {
     expect(trackEvent.nativeEvent.type).toBe('click')
     expect(trackEvent.targetElement).toBe(button)
     expect(trackEvent.fiber?.componentName).toBe('SubmitButton')
-    expect(trackEvent.fiber?.props).toEqual({})
+    expect(trackEvent.fiber?.props).toEqual({ onClick: expect.any(Function), children: 'Submit' })
 
     button.remove()
   })

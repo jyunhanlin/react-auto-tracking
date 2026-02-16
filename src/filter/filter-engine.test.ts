@@ -132,7 +132,7 @@ describe('findTrackableElement', () => {
       const result = find({ target: el, eventType: 'click' })
       expect(result?.element).toBe(el)
       expect(result?.fiber?.componentName).toBe('MyButton')
-      expect(result?.fiber?.props).toEqual({ variant: 'primary' })
+      expect(result?.fiber?.props).toEqual({ onClick: expect.any(Function) })
       el.remove()
     })
 

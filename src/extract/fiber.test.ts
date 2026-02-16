@@ -122,27 +122,32 @@ describe('extractFiberInfo', () => {
     expect(info?.componentName).toBe('CustomName')
   })
 
-  it('extracts props from nearest component', () => {
+  it('extracts props from the element fiber itself', () => {
     const fiber = createFiber({
+      memoizedProps: { 'data-track': 'btn', onClick: () => {} },
       return: createFiber({
         type: function MyButton() {},
-        memoizedProps: { variant: 'primary', size: 'lg', data: { id: 123 } },
+        memoizedProps: { variant: 'primary' },
       }),
     })
 
     const info = extractFiberInfo(fiber)
-    expect(info?.props).toEqual({ variant: 'primary', size: 'lg', data: { id: 123 } })
+    expect(info?.componentName).toBe('MyButton')
+    expect(info?.props).toEqual({ 'data-track': 'btn', onClick: expect.any(Function) })
   })
 
-  it('returns null when no component found in fiber tree', () => {
+  it('returns info with null componentName when no component found in fiber tree', () => {
     const fiber = createFiber({
+      memoizedProps: { id: 'test' },
       return: createFiber({ type: 'div', return: null }),
     })
 
-    expect(extractFiberInfo(fiber)).toBeNull()
+    const info = extractFiberInfo(fiber)
+    expect(info?.componentName).toBeNull()
+    expect(info?.props).toEqual({ id: 'test' })
   })
 
-  it('skips host elements and finds nearest component', () => {
+  it('returns element props while finding component name from ancestor', () => {
     const appFiber = createFiber({
       type: function App() {},
       memoizedProps: { title: 'My App' },
@@ -154,11 +159,12 @@ describe('extractFiberInfo', () => {
     })
     const hostFiber = createFiber({
       type: 'button',
+      memoizedProps: { 'data-track': 'submit' },
       return: divFiber,
     })
 
     const info = extractFiberInfo(hostFiber)
     expect(info?.componentName).toBe('App')
-    expect(info?.props).toEqual({ title: 'My App' })
+    expect(info?.props).toEqual({ 'data-track': 'submit' })
   })
 })
