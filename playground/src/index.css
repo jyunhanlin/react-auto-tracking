@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --fg: #1a1a1a;
+  --fg-muted: #737373;
+  --fg-faint: #a3a3a3;
+  --bg: #ffffff;
+  --bg-subtle: #fafafa;
+  --border: #e5e5e5;
+  --border-strong: #d4d4d4;
+  --radius: 8px;
+
+  --pointer: #2563eb;
+  --pointer-bg: #eff6ff;
+  --form: #059669;
+  --form-bg: #ecfdf5;
+  --ambient: #d97706;
+  --ambient-bg: #fffbeb;
+
+  --font-sans: 'Sora', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+html {
+  font-family: var(--font-sans);
+  color: var(--fg);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}

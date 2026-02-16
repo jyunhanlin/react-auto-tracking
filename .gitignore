@@ -4,3 +4,5 @@ coverage/
 *.tsbuildinfo
 .DS_Store
 docs/
+playground/node_modules/
+playground/dist/
