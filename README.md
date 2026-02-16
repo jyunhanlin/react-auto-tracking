@@ -69,7 +69,21 @@ Multiple listeners can be registered for the same event type — each fires inde
 
 ### `tracker.getLastEvent(): TrackEvent | null`
 
-Returns the most recent tracked event, or `null` if none.
+Returns the most recent tracked event, or `null` if none. Useful with `visibilitychange` or `beforeunload` to capture the last interaction before the user leaves:
+
+```ts
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'hidden') {
+    const last = tracker.getLastEvent()
+    if (last) {
+      navigator.sendBeacon('/analytics', JSON.stringify({
+        component: last.fiber?.componentName,
+        element: last.targetElement.tagName,
+      }))
+    }
+  }
+})
+```
 
 ### `tracker.destroy()`
 
