@@ -1,13 +1,15 @@
-import type { ResolvedConfig, TrackEvent } from '../types'
+import type { ResolvedConfig, TrackEvent, TrackCallback, ListenerOptions } from '../types'
 import { extractElementInfo } from '../extract/element'
 import { resolveFiber, extractFiberInfo } from '../extract/fiber'
 import { getTrackableElement } from '../filter/filter-engine'
-import { createRegistry, type Registry } from './registry'
+import { createRegistry } from './registry'
 
 export interface Pipeline {
   handleEvent(domEvent: Event): void
   getLastEvent(): TrackEvent | null
-  readonly registry: Registry
+  addListener(eventType: string, callback: TrackCallback, options: ListenerOptions): () => void
+  getEventTypes(): Set<string>
+  clear(): void
 }
 
 export function createPipeline(config: ResolvedConfig): Pipeline {
@@ -15,8 +17,6 @@ export function createPipeline(config: ResolvedConfig): Pipeline {
   let lastEvent: TrackEvent | null = null
 
   return {
-    registry,
-
     handleEvent(domEvent: Event): void {
       if (!config.enabled) return
 
@@ -53,6 +53,18 @@ export function createPipeline(config: ResolvedConfig): Pipeline {
 
     getLastEvent(): TrackEvent | null {
       return lastEvent
+    },
+
+    addListener(eventType: string, callback: TrackCallback, options: ListenerOptions): () => void {
+      return registry.add(eventType, callback, options)
+    },
+
+    getEventTypes(): Set<string> {
+      return registry.getEventTypes()
+    },
+
+    clear(): void {
+      registry.clear()
     },
   }
 }

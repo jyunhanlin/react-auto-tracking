@@ -30,7 +30,7 @@ export function createTracker(config?: TrackerConfig): Tracker {
     if (handler === undefined) return
 
     // Only remove if no more listeners for this type
-    if (!pipeline.registry.getEventTypes().has(eventType)) {
+    if (!pipeline.getEventTypes().has(eventType)) {
       document.removeEventListener(eventType, handler, true)
       domListeners.delete(eventType)
     }
@@ -41,7 +41,7 @@ export function createTracker(config?: TrackerConfig): Tracker {
       if (destroyed) return () => {}
 
       ensureDomListener(eventType)
-      const unsub = pipeline.registry.add(eventType, callback, options ?? {})
+      const unsub = pipeline.addListener(eventType, callback, options ?? {})
 
       return () => {
         unsub()
@@ -57,7 +57,7 @@ export function createTracker(config?: TrackerConfig): Tracker {
       if (destroyed) return
       destroyed = true
 
-      pipeline.registry.clear()
+      pipeline.clear()
 
       for (const [eventType, handler] of domListeners) {
         document.removeEventListener(eventType, handler, true)

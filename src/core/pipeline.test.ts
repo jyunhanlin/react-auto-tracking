@@ -21,7 +21,7 @@ describe('createPipeline', () => {
     const pipeline = createPipeline(config)
     const callback = vi.fn()
 
-    pipeline.registry.add('click', callback, {})
+    pipeline.addListener('click', callback, {})
 
     const button = document.createElement('button')
     button.textContent = 'Submit'
@@ -58,7 +58,7 @@ describe('createPipeline', () => {
     const pipeline = createPipeline(config)
     const callback = vi.fn()
 
-    pipeline.registry.add('click', callback, {})
+    pipeline.addListener('click', callback, {})
 
     const div = document.createElement('div')
     document.body.appendChild(div)
@@ -76,7 +76,7 @@ describe('createPipeline', () => {
     const pipeline = createPipeline(config)
     const callback = vi.fn()
 
-    pipeline.registry.add('input', callback, {})
+    pipeline.addListener('input', callback, {})
 
     const input = document.createElement('input')
     document.body.appendChild(input)
@@ -94,7 +94,7 @@ describe('createPipeline', () => {
     const pipeline = createPipeline(config)
     const callback = vi.fn()
 
-    pipeline.registry.add('scroll', callback, {})
+    pipeline.addListener('scroll', callback, {})
 
     const div = document.createElement('div')
     document.body.appendChild(div)
@@ -112,7 +112,7 @@ describe('createPipeline', () => {
     const pipeline = createPipeline(config)
     const callback = vi.fn()
 
-    pipeline.registry.add('click', callback, {})
+    pipeline.addListener('click', callback, {})
 
     const button = document.createElement('button')
     button.className = 'no-track'
@@ -130,7 +130,7 @@ describe('createPipeline', () => {
     const config = makeConfig()
     const pipeline = createPipeline(config)
 
-    pipeline.registry.add('click', () => {}, {})
+    pipeline.addListener('click', () => {}, {})
 
     const button = document.createElement('button')
     document.body.appendChild(button)
@@ -150,7 +150,7 @@ describe('createPipeline', () => {
     const pipeline = createPipeline(config)
     const callback = vi.fn()
 
-    pipeline.registry.add('click', callback, {})
+    pipeline.addListener('click', callback, {})
 
     const button = document.createElement('button')
     document.body.appendChild(button)
