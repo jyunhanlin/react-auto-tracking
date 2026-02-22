@@ -11,6 +11,7 @@ jobs:
     permissions:
       contents: read
       id-token: write
+      packages: write
     steps:
       - uses: actions/checkout@v6
 
@@ -32,10 +33,26 @@ jobs:
       - name: Build
         run: pnpm build
 
-      - name: Publish
+      - name: Publish to npm
         run: |
           if [[ "$GITHUB_REF_NAME" == *-* ]]; then
             pnpm publish --no-git-checks --provenance --tag next
           else
             pnpm publish --no-git-checks --provenance
           fi
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: lts/*
+          registry-url: "https://npm.pkg.github.com"
+
+      - name: Publish to GitHub Packages
+        run: |
+          npm pkg set "name=@jyunhanlin/react-global-tracking"
+          if [[ "$GITHUB_REF_NAME" == *-* ]]; then
+            pnpm publish --no-git-checks --tag next
+          else
+            pnpm publish --no-git-checks
+          fi
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
